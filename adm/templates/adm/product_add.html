@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'adm/css/add_or_update.css' %}">
+{% endblock %}
+
+{% block main %}
+<div class="product_container">
+  <form method="post" class="product_form">
+    {% csrf_token %}
+    {% for field in form %}
+      <div class="field">
+          {{ field.label_tag }} {{ field }}
+          {% for error in field.errors %}
+              <div class="field__error">
+                  <strong>{{ error|escape }}</strong>
+              </div>
+          {% endfor %}
+      </div>
+    {% endfor %}
+    <button type="submit">Добавить</button>
+  </form>
+</div>
+{% endblock %}

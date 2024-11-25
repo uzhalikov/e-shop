@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'adm/css/adm.css' %}">
+{% endblock %}
+
+
+{% block main %}
+<h2><a class="simple-link" href="{% url 'adm' %}">Панель управления для персонала</a></h2>
+<a class="simple-link" href="{% url 'category_add' %}">Добавить категорию</a>
+<a class="simple-link"href="{% url 'product_add' %}">Добавить товар</a>
+{% endblock %}

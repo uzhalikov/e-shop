@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load custom_tags %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'app/css/detail.css' %}">
+{% endblock %}
+{% block title %}{{ title }}{% endblock %}
+{% block main %}
+<div class="product__container">
+    <div class="products">
+        <div class="product" id="{{ product.id }}">
+            <div class="product__field">
+                <img src="/media/{{ product.image }}">
+            </div>
+            <div class="product__field">
+                <div class="product__label">Наименование:</div>
+                <div class="product__value">{{ product.name }}</div>
+            </div>
+            <div class="product__field">
+                <div class="product__label">Описание:</div>
+                <div class="product__value">{{ product.description }}</div>
+            </div>
+            <div class="product__field">
+                <div class="product__label">Цена:</div>
+                <div class="product__value">{{ product.price }} руб.</div>
+            </div>
+            <div class="product__field">
+                <div class="product__label">Добавлен:</div>
+                <div class="product__value">{{ product.created }}</div>
+            </div>
+            <div class="product__button">
+                <a class="product__buy" href="{% url 'cart_add' product.slug %}">{% if product.id|to_str in cart.cart %}Добавлено: {{ cart|get_count:product.id }} {% else %}Купить{% endif %}</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="{% static 'app/js/products.js' %}"></script>
+{% endblock %}

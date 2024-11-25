@@ -1,0 +1,32 @@
+.product_form{
+    width: max-content;
+    border: 1px solid;
+    padding: 10px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.field{
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    border-bottom: 1px solid;
+    padding: 5px 0;
+    align-items: center;
+}
+.field input, .field textarea, .field select{
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 5px;
+    resize: none;
+}
+.product_form button{
+    border: 1px solid;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.field input[type=file]{
+    border: 0;
+}

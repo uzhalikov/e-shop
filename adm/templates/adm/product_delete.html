@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'adm/css/add_or_update.css' %}">
+{% endblock %}
+
+{% block main %}
+<form method="post">
+    {% csrf_token %}
+    <p>Вы действительно хотите удалить запись? <span class="product_name">{{ product.name }}</span></p>
+    <button type="submit">Удалить</button>
+</form>
+{% endblock %}

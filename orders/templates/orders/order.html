@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'orders/css/order.css' %}">
+{% endblock %}
+
+{% block title %}{{ title }}{% endblock %}
+{% block main %}
+<div class="order">
+    <h3>{{ title }}</h3>
+    <table>
+        <tr>
+            <td>Наименование</td>
+            <td>Количество</td>
+            <td>Стоимость</td>
+        </tr>
+        {% for item in order_items %}
+            <tr>
+                <td><a class="simple-link" href="{{ item.product.get_absolute_url }}">{{ item.product.name }}</a></td>
+                <td class="order-item-quantity">{{ item.quantity }}</td>
+                <td class="order-item-price">{{ item.price }}</td>
+            </tr>
+        {% endfor %}
+        <tr>
+            <td>Итого</td>
+            <td id="order_total_quantity"></td>
+            <td id="order_total_price"></td>
+        </tr>
+    </table>
+</div>
+<script src="{% static '/orders/js/order.js' %}"></script>
+{% endblock %}

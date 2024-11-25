@@ -1,0 +1,10 @@
+button{
+    background: rgb(238, 96, 96);
+    padding: 5px;
+    border-radius: 5px;
+    color: #000;
+    cursor: pointer;
+}
+.product_name{
+    color: blue;
+}

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'cart/css/cart_detail.css' %}">
+{% endblock %}
+
+{% block title %}{{ title }}{% endblock %}
+{% block main %}
+    <div class="cart">
+        <div class="cart__list">
+            {% for item in cart %}
+                {% with product=item.product %}
+                    <div class="cart__item" id="{{product.id}}">
+                        <img src="/media/{{product.image}}">
+                        <div class="cart__text">
+                            <p>Наименование: <a href="{{ product.get_absolute_url }}">{{ product.name }}</a></p>
+                            <p>Описание: {{ product.description }}</p>
+                            <p>Количество: <input id="itemQuantity" type="number" min="1" max="1000" value="{{ item.quantity }}"></p>
+                            <p>Цена: <span id="itemPrice">{{ product.price|floatformat:0  }}</span> руб.</p>
+                            <p>Стоимость: <span id="itemTotalPrice">{{ item.total_price|floatformat:0 }}</span> руб.</p>
+                        </div>
+                        <span data-id="remove_item" class="remove_item" title="Удалить из корзины">X</span>
+                    </div>
+                {% endwith %}
+            {% endfor %}
+        </div>
+        <div class="cart__info">
+            {% if cart.get_length %}
+                <p>Количество товаров: <span id="totalQuantity">{{ cart.get_length }} шт.</span></p>
+                <p>Сумма товаров: <span id="totalPrice">{{ cart.get_total_price|floatformat:0 }}</span> руб.</p>
+                <p><span data-id="place_order" class="simple-link">Оформить заказ</span></p>
+                <p><span data-id="clear_cart" class="simple-link">Очистить корзину</span></p>
+            {% else %}
+                <p>Корзина пуста</p>
+            {% endif %}
+        </div>
+    </div>
+    <script>
+        const orderForm = `{{ order_form }}`
+        const quickOrderForm = `{{ quick_order_form }}`
+        const user = "{{ request.user }}"
+    </script>
+    <script type="module" src="{% static 'cart/js/cart_detail.js' %}"></script>
+{% endblock %}

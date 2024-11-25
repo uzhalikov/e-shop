@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load custom_tags %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'app/css/products.css' %}">
+{% endblock %}
+{% block title %}Интернет-магазин электроники{% endblock %}
+{% block main %}
+<aside class="categories">
+    {% for cat in categories %}
+        <a class="category {% if cat.slug in request.path %}active_cat{% endif %}" href="{% url 'products_by_cart' cat.slug %}">{{ cat.name }}</a>
+    {% endfor %}
+</aside>
+<div class="product-container">
+    <div class="fiters">
+        <form class="form">
+            {{ filterset.form }}
+            <button type="submit">Фильтровать</button>
+        </form>
+    </div>
+    <div class="products">
+        {% for product in products %}
+            <div class="product" id="{{ product.id }}">
+                <div class="product__info">
+                    <img src="/media/{{product.image}}" alt="">
+                    <div class="product__row">
+                        <span>Наименование:</span>
+                        <a href="{{ product.get_absolute_url }}">{{ product.name }}</a>
+                    </div>
+                    <div class="product__row">
+                        <span>Цена:</span>
+                        <span>{{ product.price|floatformat:0  }} руб.</span>                   
+                    </div>
+                </div>
+                <div class="product__button">
+                    <a class="product__buy" href="{% url 'cart_add' product.slug %}">{% if product.id|to_str in cart.cart %}Добавлено: {{ cart|get_count:product.id }} {% else %}Купить{% endif %}</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+<script type="module" src="{% static 'app/js/products.js' %}"></script>
+{% endblock %}

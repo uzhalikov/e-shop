@@ -1,0 +1,39 @@
+.product__container{
+    padding: 10px;
+}
+.product{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: #fff;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 0 auto;
+    width: 500px;
+}
+.product__field{
+    display: flex;
+    justify-content: space-between;
+}
+.product__buy{
+    text-decoration: none;
+    color: #fff;
+    background: rgb(142, 178, 247);
+    display: inline-block;
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+}
+.product__label{
+    font-weight: 900;
+}
+.product__field img{
+    width: 300px;
+    margin: 0 auto;
+}
+.product__button{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    text-align: center;
+}
