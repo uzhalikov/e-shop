@@ -1,0 +1,52 @@
+.personal{
+    display: flex;
+    justify-content: space-between;
+    min-height: 220px;
+    gap: 30px;
+}
+.personal__links, .personal__data, .user-orders{
+    font-size: 16px;
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border-radius: 5px;
+    padding: 10px;
+    width: 200px;
+}
+.personal__data, .user-orders{
+    width: calc(100% - 200px - 30px)
+}
+.personal__data{
+    transition: 0.6s;
+    flex-direction: row;
+    gap: 20px;
+    flex: 2;
+}
+.user-photo{
+    width: 200px;
+    height: 200px;
+}
+.user-photo img{
+    height: inherit;
+    width: inherit;
+}
+.user-data__item{
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+}
+.hidden{
+    transition: 0.6s;
+    display: none;
+}
+.user-orders table{
+    border-collapse: collapse;
+    text-align: center;
+}
+.user-orders th, td{
+    border: 1px solid #dddddd;
+    padding: 5px 10px;
+}
+.user-orders tr:nth-child(odd){
+    background: #F7F7F7;
+}

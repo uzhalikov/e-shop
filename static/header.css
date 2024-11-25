@@ -1,0 +1,58 @@
+header{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    justify-content: space-between;
+    height: 5vh;
+    padding: 0 10px;
+    border-radius: 0 0 10px 10px;
+    background: rgba(128, 128, 128, 0.2);
+}
+header a{
+    font-size: 18px;
+    text-decoration: none;
+    padding: 5px;
+    border-radius: 5px;
+    color: var(--link-color);
+    transition: 0.6s;
+}
+.header__links{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.header__links a:hover{
+    background: var(--link-bg-hover);
+    color: #000;
+    transition: 0.6s;
+    cursor: pointer;
+}
+header form{
+    position: relative;
+}
+header input{
+    width: 700px;
+    padding: 7px 65px 7px 5px;
+    border-radius: 5px;
+}
+header button{
+    background: 0;
+    position: absolute;
+    right: 25px;
+    top: 8px;
+    cursor: pointer;
+}
+header button:hover{
+    color: var(--link-color);
+}
+.header__logo{
+    width: 40px;
+    border-radius: 50%;
+}
+header img{
+    width: 25px;
+    cursor: pointer;
+}
+.cart__length{
+    color: #000;
+}

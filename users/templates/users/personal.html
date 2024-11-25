@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'users/css/personal.css' %}">
+{% endblock %}
+
+{% block title %}{{ title }}{% endblock %}
+{% block main %}
+<div class="personal">
+    <div class="personal__links">
+        <div class="simple-link" id="personal">Личные данные</div>
+        <div class="simple-link" id="orders">{% if request.user.username != 'adm' %}Мои заказы{% else %}Все заказы{% endif %}</div>
+        {% if request.user.username == 'adm' %} <a class="simple-link" href="{% url 'adm' %}">Панель управления</a> {% endif %}
+    </div>
+    <div class="personal__data">
+        <div class="user-photo">
+            <img src="{% static '/users/images/none_photo.jpg' %}">
+        </div>
+        <div class="user-data">
+            <div class="user-data__item"><div>Имя:</div><div>{{ user.first_name }}</div></div>
+            <div class="user-data__item"><div>Фамилия:</div><div>{{ user.last_name }}</div></div>
+            <div class="user-data__item"><div>E-mail:</div><div>{{ user.email }}</div></div>
+            <div class="user-data__item"><div>Login:</div><div>{{ user.username }}</div></div>
+        </div>
+    </div>
+    <div class="user-orders hidden">
+        <table>
+            <tr>
+                <th>№ заказа</th>
+                <th>Дата заказа</th>
+                <th>Статус заказа</th>
+                <th>Способ оплаты</th>
+                <th>Способ доставки</th>
+                <th>Адрес доставки</th>
+            </tr>
+            {% for order in orders %}
+                <tr>
+                    <td><a class="simple-link" href="{% url 'order' order.pk %}">{{ order }}</a></td>
+                    <td>{{ order.created }}</td>
+                    <td>{{ order.state }}</td>
+                    <td>{{ order.payment }}</td>
+                    <td>{{ order.delivery }}</td>
+                    <td>{{ order.address }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+<script src="{% static '/users/js/personal.js' %}"></script>
+{% endblock %}
